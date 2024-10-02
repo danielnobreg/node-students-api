@@ -14,6 +14,18 @@ class StudentController {
     // create function
     static create(request, response) {
         const {name, grade1, grade2} = request.body;
+        if (grade1 <= -1) {
+            response.status(400).json({
+                message: "Provide a valid note"
+            });
+            return;
+        }
+        if (grade2 <= -1) {
+            response.status(400).json({
+                message: "Provide a valid note"
+            });
+            return;
+        }
         let media = grade1+grade2;
         var situation;
         if (media>7) {
@@ -61,6 +73,18 @@ class StudentController {
     if (idStudentFound === -1) {
         response.status(404).json({
             message: "Student not found!"
+        });
+        return;
+    }
+    if (grade1 <= -1) {
+        response.status(400).json({
+            message: "Provide a valid note"
+        });
+        return;
+    }
+    if (grade2 <= -1) {
+        response.status(400).json({
+            message: "Provide a valid note"
         });
         return;
     }
